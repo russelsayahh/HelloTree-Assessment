@@ -12,10 +12,8 @@ export function createApp() {
 
   app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
-  // Public: the demo switcher needs the list of identities before it has one.
   app.use('/api/users', usersRouter);
 
-  // Everything else requires an identity, resolved from the database.
   app.use('/api/requests', identify, requestsRouter);
 
   app.use((_req, res) => {
@@ -24,7 +22,6 @@ export function createApp() {
       .json({ error: { code: 'NOT_FOUND', message: 'No such endpoint.' } });
   });
 
-  // Express 5 forwards rejected promises from async handlers here.
   app.use((err, _req, res, _next) => {
     console.error(err);
     res.status(500).json({

@@ -1,13 +1,3 @@
-/**
- * Drops the schema, recreates it, and fills it with demo data.
- *
- *   npm run db:reset
- *
- * Ages are set explicitly so the 24-hour urgent flag is visible the moment you
- * open the admin list, without waiting a day. The seed is deliberately not
- * idempotent-by-merge: it starts from an empty schema every time, so a reset
- * always produces exactly this data.
- */
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -22,7 +12,6 @@ const USERS = [
   { name: 'Hellotree Admin', role: 'admin' },
 ];
 
-// ageHours is how long ago the request was created.
 const REQUESTS = [
   {
     client: 'Acme Retail',

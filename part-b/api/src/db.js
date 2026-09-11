@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import pg from 'pg';
 
-// Vitest sets NODE_ENV=test, so the suite talks to its own database and can
-// drop and reseed freely without touching the one used by `npm run dev`.
 const connectionString =
   process.env.NODE_ENV === 'test'
     ? process.env.DATABASE_URL_TEST
